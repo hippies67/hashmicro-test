@@ -86,6 +86,8 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        $request->gajih = str_replace(".", "", $request->gajih);
+
         $request->validate([
             'nama_pegawai' => 'required',
             'email' => 'required|email|unique:pegawai',
@@ -100,6 +102,7 @@ class PegawaiController extends Controller
             'gajih.required' => 'Gajih harus diisi.',
             'departemen_id.required' => 'Departemen harus diisi.',
         ]);
+
 
         $pegawai = Pegawai::create($request->all());
 
@@ -134,7 +137,7 @@ class PegawaiController extends Controller
                 'email',
                 Rule::unique('pegawai')->ignore($id),
             ],
-            'gajih' => 'required|numeric',
+            'gajih' => 'required',
             'departemen_id' => 'required|integer',
             'bonus_id' => 'nullable|integer',
         ],[
@@ -151,7 +154,7 @@ class PegawaiController extends Controller
         $pegawai->update([
             'nama_pegawai' => $request->nama_pegawai,
             'email' => $request->email,
-            'gajih' => $request->gajih,
+            'gajih' => str_replace(".", "", $request->gajih),
             'departemen_id' => $request->departemen_id,
             'bonus_id' => $request->bonus_id,
         ]);

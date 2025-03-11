@@ -65,6 +65,9 @@ class BonusController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->jumlah = str_replace(".", "", $request->jumlah);
+
         $request->validate([
             'nama_bonus' => 'required',
             'jumlah' => 'required',
@@ -72,6 +75,7 @@ class BonusController extends Controller
             'nama_bonus.required' => 'Nama Bonus harus diisi.',
             'jumlah.required' => 'Jumlah harus diisi.',
         ]);
+
 
         $bonus = Bonus::create($request->all());
 
@@ -101,7 +105,7 @@ class BonusController extends Controller
     {
         $request->validate([
             'nama_bonus' => 'required',
-            'jumlah' => 'required|numeric',
+            'jumlah' => 'required',
         ],[
             'nama_bonus.required' => 'Nama Bonus harus diisi.',
             'jumlah.required' => 'Jumlah harus diisi.',
@@ -111,7 +115,7 @@ class BonusController extends Controller
 
         $bonus->update([
             'nama_bonus' => $request->nama_bonus,
-            'jumlah' => $request->jumlah,
+            'jumlah' => str_replace(".", "", $request->jumlah)
         ]);
 
         return response()->json($bonus);
