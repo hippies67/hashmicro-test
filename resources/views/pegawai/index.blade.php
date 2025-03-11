@@ -137,7 +137,7 @@
                                 <select class="form-control" name="bonus_id" id="bonus_id">
                                     <option value="">Pilih Bonus</option>
                                     @foreach($bonus as $bon)
-                                        <option value="{{ $bon->id }}">{{ $bon->nama_bonus }}</option>
+                                        <option value="{{ $bon->id }}">{{ $bon->nama_bonus }} (Rp. {{ number_format($bon->jumlah, 0, ',', '.') }})</option>
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback" id="error_bonus_id"></div>
@@ -217,7 +217,7 @@
                                 <select class="form-control" name="bonus_id" id="edit_bonus_id">
                                     <option value="">Pilih Bonus</option>
                                     @foreach($bonus as $bon)
-                                        <option value="{{ $bon->id }}">{{ $bon->nama_bonus }}</option>
+                                        <option value="{{ $bon->id }}">{{ $bon->nama_bonus }} (Rp. {{ number_format($bon->jumlah, 0, ',', '.') }})</option>
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback" id="error_edit_bonus_id"></div>
