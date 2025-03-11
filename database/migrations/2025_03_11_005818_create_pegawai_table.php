@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nama_pegawai');
             $table->string('email');
-            $table->bigInteger('gajih', 8, 2);
+            $table->decimal('gajih', 15, 2);
             $table->unsignedBigInteger('departemen_id');
             $table->unsignedBigInteger('bonus_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('bonus_id')->references('id')->on('bonuses');
-            $table->foreign('departemen_id')->references('id')->on('departemens');
+            $table->foreign('bonus_id')->references('id')->on('bonuses')->onDelete('cascade');
+            $table->foreign('departemen_id')->references('id')->on('departemens')->onDelete('cascade');
         });
     }
 

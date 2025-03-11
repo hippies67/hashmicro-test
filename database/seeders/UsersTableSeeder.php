@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         $user = new User();
-        $user->name = "Admin Hashmicro";
+        $user->name = "Hashmicro";
         $user->email = "admin@hasmicro.com";
         $user->password = bcrypt('secret');
         $user->save();
